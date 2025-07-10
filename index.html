@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Scalp Trading Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Scalp Trading Analyzer</h1>
+            <div id="auth-state">
+                <button id="login-btn">Login</button>
+                <button id="logout-btn" style="display:none;">Logout</button>
+            </div>
+        </header>
+
+        <div id="welcome-message" class="hidden"></div>
+
+        <section id="main-content">
+            <h2>Pre-Trade Setup</h2>
+            <div class="param-row">
+                <label>Account Balance ($):</label>
+                <input type="number" id="account-balance" value="10000" min="0">
+            </div>
+            
+            <div class="param-row">
+                <label>Risk Per Trade (%):</label>
+                <input type="number" id="risk-per-trade" value="0.25" min="0.1" step="0.05">
+                <span class="recommended">Recommended: 0.25-1%</span>
+            </div>
+            
+            <div class="param-row">
+                <label>Stop Loss (Points):</label>
+                <input type="number" id="stop-loss" value="6.00" min="1" step="0.5">
+                <span class="recommended">Recommended: 8.00</span>
+            </div>
+            
+            <div class="param-row">
+                <label>Take Profit (Points):</label>
+                <input type="number" id="take-profit" value="7.80" min="1" step="0.5">
+            </div>
+            
+            <div id="position-size">
+                <strong>Calculated Position Size:</strong> 
+                <span id="size-result">0</span> shares/contracts
+            </div>
+
+            <h2>Upload Chart Image</h2>
+            <div class="upload-area" id="upload-area">
+                <p>Drag & drop chart screenshot or click to browse</p>
+                <input type="file" id="chart-upload" accept="image/*">
+            </div>
+            
+            <canvas id="analysis-canvas" class="hidden"></canvas>
+            
+            <div id="analysis-results" class="hidden">
+                <h3>Analysis Results</h3>
+                <div id="trade-opportunities"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <!-- OpenCV.js -->
+    <script async src="https://docs.opencv.org/4.5.5/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    
+    <!-- App JS -->
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
